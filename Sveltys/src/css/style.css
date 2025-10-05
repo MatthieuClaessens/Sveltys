@@ -1,0 +1,85 @@
+@import "tailwindcss";
+
+/* Polices et animations globales */
+body {
+    font-family: 'Inter', sans-serif;
+}
+
+/* Animations */
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-20px); }
+}
+
+@keyframes gradient {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* Classes réutilisables */
+.animated-gradient {
+    background-size: 200% 200%;
+    animation: gradient 15s ease infinite;
+}
+
+.glass-morphism {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.float-animation {
+    animation: float 6s ease-in-out infinite;
+}
+
+/* Styles pour les cartes et conteneurs */
+.card-container {
+    background: linear-gradient(135deg, rgba(30, 41, 59, 0.8) 0%, rgba(15, 23, 42, 0.8) 100%);
+    backdrop-filter: blur(12px);
+    border-radius: 1.5rem;
+    border: 1px solid rgba(55, 65, 81, 0.5);
+    padding: 2rem;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+}
+
+/* Styles pour les inputs */
+.form-input {
+    width: 100%;
+    padding: 1rem 1.25rem;
+    background: rgba(15, 23, 42, 0.5);
+    border: 2px solid rgba(55, 65, 81, 0.7);
+    border-radius: 1rem;
+    color: white;
+    font-size: 1.125rem;
+    transition: border-color 0.3s, box-shadow 0.3s;
+    outline: none;
+}
+
+.form-input:focus {
+    border-color: #10b981;
+    box-shadow: 0 0 0 4px rgba(16, 185, 129, 0.2);
+    border-width: 2px;
+}
+
+/* Styles pour les boutons */
+.gradient-button {
+    background: linear-gradient(90deg, #10b981, #06b6d4, #3b82f6);
+    color: white;
+    font-weight: 600;
+    padding: 0.625rem 1.5rem;
+    border-radius: 0.75rem;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.gradient-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(16, 185, 129, 0.3);
+}
+
+/* Styles pour les indicateurs de catégorie */
+.category-indicator {
+    width: 1rem;
+    height: 1rem;
+    border-radius: 9999px;
+}

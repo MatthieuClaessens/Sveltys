@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sveltys - Calculateur d'IMC</title>
+    <script type="module" src="/src/main.js" defer></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+</head>
+<body class="bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 min-h-screen animated-gradient">
+    <nav class="fixed top-0 w-full z-50 glass-morphism">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <div class="flex items-center space-x-3">
+                    <div class="w-10 h-10 bg-gradient-to-br from-emerald-400 to-cyan-500 rounded-xl flex items-center justify-center">
+                        <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
+                        </svg>
+                    </div>
+                    <span class="text-2xl font-bold text-white">Sveltys</span>
+                </div>
+                <div class="hidden md:flex items-center space-x-8">
+                    <button class="gradient-button px-6 py-2.5 rounded-xl">
+                    <a href="https://matthieuclaessens.vercel.app/" target="_blank" rel="noopener noreferrer"></a>
+                        Portfolio
+                    </button>
+                </div>
+                <button id="mobileMenuBtn" class="md:hidden text-white">
+                    <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <div id="mobileMenu" class="hidden md:hidden glass-morphism border-t border-white/10">
+            <div class="px-4 py-6 space-y-4">
+                <button class="gradient-button w-full px-6 py-2.5 rounded-xl">
+                    Portfolio
+                </button>
+            </div>
+        </div>
+    </nav>
+    <div class="pt-32 pb-12 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-12">
+                <h1 class="text-5xl md:text-6xl lg:text-7xl font-black text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-cyan-400 to-blue-500 mb-4">
+                    Calculateur d'IMC
+                </h1>
+                <p class="text-xl md:text-2xl text-gray-400 font-light">
+                    Découvrez votre indice de masse corporelle en quelques secondes
+                </p>
+            </div>
+            <div class="grid lg:grid-cols-2 gap-8 items-start">
+                <div class="card-container">
+                    <div class="mb-8">
+                        <h2 class="text-2xl font-bold text-white mb-2">Entrez vos données</h2>
+                        <p class="text-gray-400">Renseignez vos informations pour calculer votre IMC</p>
+                    </div>
+                    <form id="imcForm" class="space-y-6">
+                        <div class="relative">
+                            <label for="height" class="block text-sm font-semibold text-gray-300 mb-3">Taille</label>
+                            <div class="relative">
+                                <input type="number" id="height" name="height" placeholder="170" required min="50" max="250" step="0.1" class="form-input" />
+                                <span class="absolute right-5 top-1/2 -translate-y-1/2 text-gray-400 font-semibold">cm</span>
+                            </div>
+                        </div>
+                        <div class="relative">
+                            <label for="weight" class="block text-sm font-semibold text-gray-300 mb-3">Poids</label>
+                            <div class="relative">
+                                <input type="number" id="weight" name="weight" placeholder="70" required min="20" max="300" step="0.1" class="form-input focus:border-cyan-500 focus:ring-cyan-500/20" />
+                                <span class="absolute right-5 top-1/2 -translate-y-1/2 text-gray-400 font-semibold">kg</span>
+                            </div>
+                        </div>
+                        <button type="submit" class="gradient-button w-full py-5 rounded-2xl text-lg">
+                            <span class="flex items-center justify-center space-x-2">
+                                <span>Calculer mon IMC</span>
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
+                                </svg>
+                            </span>
+                        </button>
+                    </form>
+                </div>
+                <div>
+                    <div id="result" class="hidden">
+                        <div class="card-container mb-6">
+                            <div class="text-center mb-6">
+                                <p class="text-gray-400 text-sm font-semibold uppercase tracking-wider mb-3">Votre résultat</p>
+                                <div class="relative inline-block">
+                                    <div id="imcCircle" class="w-40 h-40 mx-auto rounded-full flex items-center justify-center mb-4 relative overflow-hidden">
+                                        <div class="absolute inset-0 bg-gradient-to-br opacity-20"></div>
+                                        <div class="relative z-10">
+                                            <p id="imcValue" class="text-6xl font-black text-white"></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <p id="imcCategory" class="text-2xl font-bold mt-4"></p>
+                            </div>
+                            <div id="imcBar" class="h-3 bg-slate-700 rounded-full overflow-hidden mb-6">
+                                <div id="imcProgress" class="h-full transition-all duration-1000 ease-out rounded-full"></div>
+                            </div>
+                            <div id="imcDescription" class="text-gray-300 text-center leading-relaxed"></div>
+                        </div>
+                    </div>
+                    <div class="card-container border border-slate-700/30">
+                        <h3 class="text-xl font-bold text-white mb-6">Catégories d'IMC</h3>
+                        <div class="space-y-4">
+                            <div class="flex items-center space-x-3">
+                                <div class="category-indicator bg-gradient-to-r from-blue-400 to-cyan-400"></div>
+                                <span class="text-gray-300 flex-1">Insuffisance pondérale</span>
+                                <span class="text-gray-400 font-mono text-sm">&lt; 18.5</span>
+                            </div>
+                            <div class="flex items-center space-x-3">
+                                <div class="category-indicator bg-gradient-to-r from-emerald-400 to-green-400"></div>
+                                <span class="text-gray-300 flex-1">Poids normal</span>
+                                <span class="text-gray-400 font-mono text-sm">18.5 - 25</span>
+                            </div>
+                            <div class="flex items-center space-x-3">
+                                <div class="category-indicator bg-gradient-to-r from-yellow-400 to-orange-400"></div>
+                                <span class="text-gray-300 flex-1">Surpoids</span>
+                                <span class="text-gray-400 font-mono text-sm">25 - 30</span>
+                            </div>
+                            <div class="flex items-center space-x-3">
+                                <div class="category-indicator bg-gradient-to-r from-red-400 to-pink-400"></div>
+                                <span class="text-gray-300 flex-1">Obésité</span>
+                                <span class="text-gray-400 font-mono text-sm">&gt; 30</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
